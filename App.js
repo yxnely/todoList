@@ -1,37 +1,60 @@
 import React, { Component } from 'react';
 import {
+	Alert,
 	AppRegistry,
-	Text,
-	TextInput,
-	View,
 	Button,
-	Alert
+	StyleSheet,
+	View,
 } from 'react-native';
 
-export default class PizzaTranslator extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {text: ''};
+export default class ButtonBasics extends Component {
+	_onPressButton() {
+		Alert.alert('You tapped the button')
 	}
 
 	render() {
-		return(
-			<View style={{
-				padding: 10
-			}}>
-				<TextInput
-					style={{height: 40}}
-					placeholder='Type here to translate!'
-					onChangeText={(text) => this.setState({text})}
-				/>
-				<Text style={{padding: 10, fontSize: 42}}>
-					{this.state.text.split(' ').map((word) => word && '🍕').join(' ')}
-				</Text>
-				<Button
-					onPress={() => { Alert.alert('You tapped the button')}}
-					title='Press Me'
-				/>
+		return (
+			<View style={styles.container}>
+				<View style={styles.buttonContainer}>
+					<Button
+						onPress={this._onPressButton}
+						title="Press Me"
+					/>
+				</View>
+				<View style={styles.buttonContainer}>
+					<Button
+						onPress={this._onPressButton}
+						title="Press Me"
+						color="#841584"
+					/>
+				</View>
+				<View style={styles.alternativeLayoutButtonContainer}>
+					<Button
+						onPress={this._onPressButton}
+						title="This looks great!"
+					/>
+					<Button
+						onPress={this._onPressButton}
+						title="This looks OK!"
+						color="#841584"
+					/>
+				</View>
 			</View>
 		)
 	}
 }
+
+const styles = StyleSheet.create({
+	container: {
+		flex: 1,
+		justifyContent: 'center',
+	},
+	buttonContainer: {
+		margin: 20
+	},
+	alternativeLayoutButtonContainer: {
+		margin: 20,
+		flexDirection: 'row',
+		justifyContent: 'space-between'
+	}
+})
